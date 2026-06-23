@@ -10,11 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=Heebo:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class', // Enables dark mode toggling via class
+            darkMode: 'class', 
             theme: {
                 extend: {
                     colors: {
@@ -50,6 +49,7 @@
     </script>
 
     <style>
+        /* Base Overrides */
         ::selection { background: #1bb0ce; color: #fff; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -63,16 +63,17 @@
         .tab-panel.active { display: block; animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Tooltips */
         .has-tooltip {
             position: relative;
             cursor: help;
             text-decoration: underline;
             text-decoration-style: dotted;
             text-underline-offset: 4px;
-            color: #0e7c93; /* brand-deep */
+            color: #0e7c93; 
             font-weight: 600;
         }
-        .dark .has-tooltip { color: #1bb0ce; } /* brand */
+        .dark .has-tooltip { color: #1bb0ce; } 
         
         .has-tooltip::after {
             content: attr(data-tip);
@@ -120,13 +121,14 @@
             transform: translateX(-50%) translateY(0);
         }
 
+        /* Print Mode Override */
         @media print {
             body { background: white !important; color: black !important; }
             .no-print, header, .hero, .jump, #btt-btn { display: none !important; }
             main { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
             section { page-break-inside: avoid; margin-bottom: 2rem; padding-top: 1rem !important; }
             .bg-white, .dark\:bg-slate-800 { background: transparent !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; }
-            .tab-panel { display: block !important; margin-bottom: 1rem; } /* Show all tabs for printing */
+            .tab-panel { display: block !important; margin-bottom: 1rem; } 
             .tabs-nav { display: none !important; }
             pre { white-space: pre-wrap !important; word-break: break-all !important; }
             .has-tooltip { text-decoration: none; color: inherit; }
@@ -137,26 +139,24 @@
 <body class="bg-paper dark:bg-slate-900 text-ink dark:text-slate-100 font-sans antialiased leading-relaxed m-0 p-0 selection:bg-brand selection:text-white">
 
 <header class="sticky top-0 z-50 transition-all no-print bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
-    <!-- Top Row: Logos & Tools -->
+    <!-- Top Row: Title & Tools -->
     <div class="max-w-[900px] mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-3">
         
-        <!-- Logo Text Only -->
-        <a href="#top" class="flex items-center shrink-0 no-underline text-ink dark:text-slate-100 group">
+        <!-- Text Title -->
+        <a href="#top" class="flex items-center gap-3 sm:gap-4 shrink-0 no-underline text-ink dark:text-slate-100 group">
             <div>
-                <b class="font-heading font-bold text-[14px] sm:text-[16px] tracking-tight leading-tight block group-hover:text-brand transition-colors">EL AL · BUSINESS CIRCLE</b>
+                <b class="font-heading font-bold text-[14px] sm:text-[16px] tracking-tight leading-tight block group-hover:text-brand transition-colors">BUSINESS CIRCLE</b>
                 <span class="block text-[11px] sm:text-[12px] text-ink-light dark:text-slate-400 font-medium mt-0.5">מערכת תימחור וכרטוס</span>
             </div>
         </a>
 
         <!-- Tools: Theme Toggle & Print -->
         <div class="flex items-center gap-2">
-            <button id="print-btn" class="p-2 text-ink-light hover:text-brand dark:text-slate-400 dark:hover:text-brand transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand" aria-label="הדפס מדריך" title="הדפס כרטיסייה (Cheat Sheet)">
+            <button id="print-btn" class="p-2 text-ink-light hover:text-brand dark:text-slate-400 dark:hover:text-brand transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand" aria-label="הדפס מדריך" title="הדפס כרטיסייה">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
             </button>
             <button id="theme-toggle" class="p-2 text-ink-light hover:text-brand dark:text-slate-400 dark:hover:text-brand transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand" aria-label="החלף מצב תצוגה" title="מצב לילה/יום">
-                <!-- Sun Icon (Hidden in Dark Mode) -->
                 <svg id="theme-icon-sun" class="hidden dark:block" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                <!-- Moon Icon (Hidden in Light Mode) -->
                 <svg id="theme-icon-moon" class="block dark:hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </button>
         </div>
@@ -169,7 +169,7 @@
             <!-- Dynamic Command Generator Input -->
             <div class="relative w-full md:w-auto shrink-0 flex items-center gap-2 group">
                 <div class="w-8 h-8 rounded-full bg-brand-soft dark:bg-brand-deep/20 text-brand-deep dark:text-brand flex items-center justify-center shrink-0">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                 </div>
                 <div class="relative w-full sm:w-[220px]">
                     <input type="text" id="dyn-input" maxlength="8" placeholder="קוד חברה לתימחור..." 
@@ -196,6 +196,7 @@
 
 <main class="max-w-[900px] mx-auto px-4 sm:px-6 pb-24">
     
+    <!-- Hero Section -->
     <div class="relative mt-8 rounded-2xl bg-gradient-to-br from-[#0c1b22] via-[#102b33] to-[#0c1b22] text-[#eaf6f9] overflow-hidden shadow-soft border border-slate-200 dark:border-slate-800 print:bg-none print:text-black print:border-none print:shadow-none">
         <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-50 pointer-events-none print:hidden" style="background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.5px); background-size: 20px 20px;"></div>
@@ -205,12 +206,13 @@
             <div class="p-8 sm:p-10">
                 <!-- Logos Stage -->
                 <div class="flex items-center gap-5 sm:gap-6 mb-7 bg-black/20 p-4 rounded-2xl backdrop-blur-sm w-fit border border-white/10">
-                    <img src="logo 24 (5)_2.jpg" alt="24/7 Amsalem Global Travel Management" class="h-12 sm:h-14 w-auto object-contain drop-shadow-lg hover:scale-105 transition-transform hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] print:hidden" onerror="this.onerror=null; this.src='https://placehold.co/200x60/0c1b22/1bb0ce?text=24/7+Amsalem';" />
-                    <div class="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-white/50 print:hidden">
+                    <img src="./logo-amsalem.jpg" alt="24/7 Amsalem Global Travel Management" class="h-12 sm:h-14 w-auto object-contain drop-shadow-lg hover:scale-105 transition-transform hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] print:hidden" onerror="this.onerror=null; this.src='https://placehold.co/200x60/0c1b22/1bb0ce?text=24/7+Amsalem';" />
+                    <div class="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-white/50 print:hidden shrink-0">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </div>
-                    <img src="EL_AL_logo_old.svg_2.png" alt="EL AL" class="h-8 sm:h-10 w-auto object-contain brightness-0 invert opacity-90 drop-shadow-lg hover:scale-105 transition-transform hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] print:hidden" onerror="this.onerror=null; this.src='https://placehold.co/120x40/0c1b22/ffffff?text=EL+AL';" />
+                    <img src="./logo-elal.png" alt="EL AL" class="h-8 sm:h-10 w-auto object-contain brightness-0 invert opacity-90 drop-shadow-lg hover:scale-105 transition-transform hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] print:hidden" onerror="this.onerror=null; this.src='https://placehold.co/120x40/0c1b22/ffffff?text=EL+AL';" />
                 </div>
+
                 <span class="inline-flex items-center gap-2 font-heading font-semibold text-xs tracking-[1.5px] text-brand border border-brand/40 px-3 py-1.5 rounded-full mb-5 bg-brand/5 print:text-black print:border-black">
                     <span class="w-2 h-2 rounded-full bg-brand animate-pulse print:hidden"></span>
                     חובה קריאה והפנמה
@@ -219,7 +221,7 @@
                     מערכת תימחור <em class="not-italic text-brand print:text-black">חדשה</em><br>באל על
                 </h1>
                 <p class="text-[#b9d2d9] text-base mb-6 max-w-[46ch] print:text-gray-800">
-                    החל מ 1 ביולי 2026 נכנס לתוקף תהליך תימחור וכרטוס חדש עבור הסכמי החברות <b>BUSINESS CIRCLE</b>. כל הסוכנים נדרשים להכיר את ההנחיות לפני מועד ההפעלה.
+                    החל מ 1 ביולי 2026 נכנס לתוקף תהליך תימחור וכרטוס חדש עבור הסכמי החברות <b class="font-sans font-medium">BUSINESS CIRCLE</b>. כל הסוכנים נדרשים להכיר את ההנחיות לפני מועד ההפעלה.
                 </p>
             </div>
 
@@ -261,6 +263,7 @@
         </div>
     </div>
 
+    <!-- PROGRAM -->
     <section id="program" class="scroll-mt-36 pt-12">
         <p class="font-heading font-semibold text-[12px] tracking-[2px] text-brand-deep dark:text-brand uppercase mb-2.5 flex items-center gap-2">
             <span class="w-6 h-0.5 bg-brand rounded-full"></span>התוכנית
@@ -273,25 +276,21 @@
         <div class="bg-gradient-to-br from-[#2c3088] via-[#3a3f9e] to-[#2c3088] rounded-2xl p-6 sm:p-8 text-center text-[#eef0ff] shadow-soft mt-2 print:bg-none print:text-black print:border print:border-gray-300">
             <div class="font-heading font-bold tracking-wide text-lg sm:text-xl mb-6">EL AL BUSINESS CIRCLE</div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-                <!-- Tier 1 -->
                 <div class="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 relative overflow-hidden group hover:bg-white/10 transition-colors print:bg-gray-50 print:border-gray-200">
                     <div class="absolute top-0 left-0 right-0 h-1.5 bg-[#5560c8] print:bg-gray-400"></div>
                     <div class="font-heading font-bold text-base sm:text-lg tracking-wide mt-2 print:text-black">CORE</div>
                     <div class="text-[11px] text-[#b9bdf0] mt-1 font-mono print:text-gray-600">דרגה 01</div>
                 </div>
-                <!-- Tier 2 -->
                 <div class="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 relative overflow-hidden group hover:bg-white/10 transition-colors print:bg-gray-50 print:border-gray-200">
                     <div class="absolute top-0 left-0 right-0 h-1.5 bg-[#c9a14a] print:bg-gray-400"></div>
                     <div class="font-heading font-bold text-base sm:text-lg tracking-wide mt-2 print:text-black">BEYOND</div>
                     <div class="text-[11px] text-[#b9bdf0] mt-1 font-mono print:text-gray-600">דרגה 02</div>
                 </div>
-                <!-- Tier 3 -->
                 <div class="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 relative overflow-hidden group hover:bg-white/10 transition-colors print:bg-gray-50 print:border-gray-200">
                     <div class="absolute top-0 left-0 right-0 h-1.5 bg-[#aab0b6] print:bg-gray-400"></div>
                     <div class="font-heading font-bold text-base sm:text-lg tracking-wide mt-2 print:text-black">PREMIUM</div>
                     <div class="text-[11px] text-[#b9bdf0] mt-1 font-mono print:text-gray-600">דרגה 03</div>
                 </div>
-                <!-- Tier 4 -->
                 <div class="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 relative overflow-hidden group hover:bg-white/10 transition-colors print:bg-gray-50 print:border-gray-200">
                     <div class="absolute top-0 left-0 right-0 h-1.5 bg-[#e7eaee] print:bg-gray-400"></div>
                     <div class="font-heading font-bold text-base sm:text-lg tracking-wide mt-2 text-white drop-shadow-sm print:text-black print:drop-shadow-none">ELITE</div>
@@ -302,6 +301,7 @@
         </div>
     </section>
 
+    <!-- OVERVIEW -->
     <section id="overview" class="scroll-mt-36 pt-12">
         <p class="font-heading font-semibold text-[12px] tracking-[2px] text-brand-deep dark:text-brand uppercase mb-2.5 flex items-center gap-2">
             <span class="w-6 h-0.5 bg-brand rounded-full"></span>סקירה
@@ -312,7 +312,6 @@
         </p>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-            <!-- Fact -->
             <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 relative shadow-sm hover:shadow-md transition-shadow">
                 <div class="absolute top-0 right-0 w-1 h-full bg-brand rounded-r-xl"></div>
                 <h4 class="font-heading font-semibold text-[15px] mb-1.5 text-ink dark:text-slate-100">חוזה מרכזי ואחיד</h4>
@@ -346,13 +345,13 @@
         </div>
     </section>
 
+    <!-- CRITICAL -->
     <section id="critical" class="scroll-mt-36 pt-12">
         <p class="font-heading font-semibold text-[12px] tracking-[2px] text-brand-deep dark:text-brand uppercase mb-2.5 flex items-center gap-2">
             <span class="w-6 h-0.5 bg-brand rounded-full"></span>דגשים קריטיים
         </p>
         <h2 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight mb-2 text-ink dark:text-slate-100">על מה לתת את הדעת</h2>
         
-        <!-- Warning Callout -->
         <div class="bg-[#fdf3e2] dark:bg-[#422c0e] border border-[#f0d9af] dark:border-[#7a4e0c] rounded-2xl p-5 mt-4 flex gap-4 items-start shadow-sm">
             <div class="shrink-0 w-10 h-10 rounded-xl bg-[#c9821b] text-white flex items-center justify-center font-heading font-black text-xl shadow-inner">!</div>
             <div>
@@ -362,31 +361,9 @@
                 </p>
             </div>
         </div>
-
-        <p class="text-ink-muted dark:text-slate-300 text-[16px] font-medium mt-8 mb-4">לאן נכנס כל פרט של החברה (מתבצע אוטומטית):</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-center shadow-sm">
-                <div class="text-[14px] text-ink-muted dark:text-slate-400 font-medium min-h-[42px] flex items-center justify-center">מספר החברה</div>
-                <div class="text-brand my-2 text-lg">↓</div>
-                <div class="font-mono font-bold text-[15px] text-brand-deep dark:text-brand bg-brand-soft dark:bg-slate-700 rounded-lg py-2 px-1">Tour Code</div>
-            </div>
-            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-center shadow-sm">
-                <div class="text-[14px] text-ink-muted dark:text-slate-400 font-medium min-h-[42px] flex items-center justify-center">קוד התמחור</div>
-                <div class="text-brand my-2 text-lg">↓</div>
-                <div class="font-mono font-bold text-[15px] text-brand-deep dark:text-brand bg-brand-soft dark:bg-slate-700 rounded-lg py-2 px-1 flex flex-col items-center">
-                    <span tabindex="0" class="has-tooltip focus:outline-none focus:ring-2 focus:ring-brand" data-tip="קוד המורכב מחלק בסיסי + קוד ההסכם">Fare Basis</span>
-                    <span class="font-sans font-normal text-[11px] text-ink-light dark:text-slate-500 mt-1">צמוד ל Fare Basis</span>
-                </div>
-            </div>
-            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-center shadow-sm">
-                <div class="text-[14px] text-ink-muted dark:text-slate-400 font-medium min-h-[42px] flex items-center justify-center">שם החברה + קוד תמחור</div>
-                <div class="text-brand my-2 text-lg">↓</div>
-                <div class="font-mono font-bold text-[15px] text-brand-deep dark:text-brand bg-brand-soft dark:bg-slate-700 rounded-lg py-2 px-1">Endorsement</div>
-            </div>
-        </div>
     </section>
 
+    <!-- COMMANDS & MANUAL TICKETING -->
     <section id="commands" class="scroll-mt-36 pt-12">
         <p class="font-heading font-semibold text-[12px] tracking-[2px] text-brand-deep dark:text-brand uppercase mb-2.5 flex items-center gap-2">
             <span class="w-6 h-0.5 bg-brand rounded-full"></span>פקודות וכרטוס
@@ -488,7 +465,6 @@
                 </div>
             </div>
             
-            <!-- Warning -->
             <div class="callout warn bg-[#fdf3e2] dark:bg-[#422c0e] border border-[#f0d9af] dark:border-[#7a4e0c] rounded-2xl p-5 flex gap-4 items-start shadow-sm">
                 <div class="shrink-0 w-10 h-10 rounded-xl bg-[#c9821b] text-white flex items-center justify-center font-heading font-black text-xl shadow-inner">!</div>
                 <div>
@@ -502,6 +478,7 @@
         </div>
     </section>
 
+    <!-- EXAMPLES -->
     <section id="examples" class="scroll-mt-36 pt-12">
         <p class="font-heading font-semibold text-[12px] tracking-[2px] text-brand-deep dark:text-brand uppercase mb-2.5 flex items-center gap-2">
             <span class="w-6 h-0.5 bg-brand rounded-full"></span>דוגמאות מסוף
@@ -510,6 +487,29 @@
         <p class="text-ink-muted dark:text-slate-300 text-base sm:text-lg mb-6 max-w-[64ch] leading-relaxed">
             פלט אמיתי מהמסוף לאחר תימחור. שימו לב לקוד הדרוג <code class="font-mono text-[.88em] bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-brand-deep dark:text-brand" dir="ltr">CPR03</code>, ה Tour Code <code class="font-mono text-[.88em] bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-brand-deep dark:text-brand" dir="ltr">COM12919</code> ושם החברה ב Endorsement.
         </p>
+
+        <p class="text-ink-muted dark:text-slate-300 text-[16px] font-medium mb-4">לאן נכנס כל פרט של החברה (מתבצע אוטומטית):</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-center shadow-sm">
+                <div class="text-[14px] text-ink-muted dark:text-slate-400 font-medium min-h-[42px] flex items-center justify-center">מספר החברה</div>
+                <div class="text-brand my-2 text-lg">↓</div>
+                <div class="font-mono font-bold text-[15px] text-brand-deep dark:text-brand bg-brand-soft dark:bg-slate-700 rounded-lg py-2 px-1">Tour Code</div>
+            </div>
+            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-center shadow-sm">
+                <div class="text-[14px] text-ink-muted dark:text-slate-400 font-medium min-h-[42px] flex items-center justify-center">קוד התמחור</div>
+                <div class="text-brand my-2 text-lg">↓</div>
+                <div class="font-mono font-bold text-[15px] text-brand-deep dark:text-brand bg-brand-soft dark:bg-slate-700 rounded-lg py-2 px-1 flex flex-col items-center">
+                    <span tabindex="0" class="has-tooltip focus:outline-none focus:ring-2 focus:ring-brand" data-tip="קוד המורכב מחלק בסיסי + קוד ההסכם">Fare Basis</span>
+                    <span class="font-sans font-normal text-[11px] text-ink-light dark:text-slate-500 mt-1">צמוד ל Fare Basis</span>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-center shadow-sm">
+                <div class="text-[14px] text-ink-muted dark:text-slate-400 font-medium min-h-[42px] flex items-center justify-center">שם החברה + קוד תמחור</div>
+                <div class="text-brand my-2 text-lg">↓</div>
+                <div class="font-mono font-bold text-[15px] text-brand-deep dark:text-brand bg-brand-soft dark:bg-slate-700 rounded-lg py-2 px-1">Endorsement</div>
+            </div>
+        </div>
 
         <!-- Tabs Navigation -->
         <div class="tabs-nav flex flex-wrap gap-2 mb-4" role="tablist" aria-label="מערכות GDS">
@@ -547,33 +547,7 @@ FP CASH
             </div>
         </div>
 
-        <!-- Sabre Terminal -->
-        <div class="tab-panel" id="tab-sabre" role="tabpanel">
-            <div class="bg-term-bg rounded-xl overflow-hidden border border-[#1c2e28] shadow-lg print:border-gray-400">
-                <div class="flex items-center gap-2 px-4 py-2.5 bg-term-bar border-b border-[#1c2e28] print:hidden">
-                    <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
-                    <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
-                    <span class="w-3 h-3 rounded-full bg-[#27c93f]"></span>
-                    <span class="ms-auto font-mono text-[11px] text-term-dim tracking-wide">1S · SABRE  WP* PRICING</span>
-                </div>
-                <div class="p-4 overflow-x-auto text-left print:text-black print:bg-white" dir="ltr">
-<pre class="m-0 font-mono text-[12.5px] leading-[1.6] text-[#cfe9dd] whitespace-pre min-w-max print:text-black">
-FARE NOT GUARANTEED UNTIL TICKETED
-PQ 1  BRFLEX¥I<mark class="bg-term-green/20 text-[#d6f6e8] px-0.5 rounded print:bg-gray-200 print:text-black">CPR03</mark>¥XC¥RQ
-BASE FARE                  TAXES/FEES/CHARGES          TOTAL
-USD1404.00                   125.07XT         USD1529.07ADT
-VALIDATING CARRIER - LY
-<b class="text-white font-bold print:text-black">CORP ID/ACCNT CODE USED:</b> <mark class="bg-term-green/20 text-[#d6f6e8] px-0.5 rounded print:bg-gray-200 print:text-black">CPR03</mark>
-FARE RESTRICTIONS APPLY/<mark class="bg-term-green/20 text-[#d6f6e8] px-0.5 rounded print:bg-gray-200 print:text-black">HELLMANS CORP</mark>/<mark class="bg-term-green/20 text-[#d6f6e8] px-0.5 rounded print:bg-gray-200 print:text-black">CPR03</mark>
-01 O TLV LY 221M 21MAR 1105  MF3PR/<mark class="bg-term-green/20 text-[#d6f6e8] px-0.5 rounded print:bg-gray-200 print:text-black">CPR03</mark>   21MAR2721MAR27 01P
-<b class="text-white font-bold print:text-black">TOUR CODE-</b><mark class="bg-[#ffd580]/20 text-[#ffe6ad] px-0.5 rounded print:bg-gray-200 print:text-black">COM12919</mark>
-</pre>
-                </div>
-            </div>
-        </div>
-
-        <!-- Galileo Terminal -->
-        <div class="tab-panel" id="tab-travelport" role="tabpanel">
+        <div id="tab-travelport" class="tab-panel" role="tabpanel">
             <div class="bg-term-bg rounded-xl overflow-hidden border border-[#1c2e28] shadow-lg print:border-gray-400">
                 <div class="flex items-center gap-2 px-4 py-2.5 bg-term-bar border-b border-[#1c2e28] print:hidden">
                     <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
@@ -596,6 +570,33 @@ RLOC <b class="text-white font-bold print:text-black">1G</b> GZV5J6   <b class="
         </div>
     </section>
 
+    <!-- EXPLANATION OF GDS DATA (Moved below GDS examples) -->
+    <section class="mt-8">
+        <p class="text-ink-muted dark:text-slate-300 text-[16px] font-medium mb-4">לאן נכנס כל פרט של החברה (מתבצע אוטומטית):</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-center shadow-sm">
+                <div class="text-[14px] text-ink-muted dark:text-slate-400 font-medium min-h-[42px] flex items-center justify-center">מספר החברה</div>
+                <div class="text-brand my-2 text-lg">↓</div>
+                <div class="font-mono font-bold text-[15px] text-brand-deep dark:text-brand bg-brand-soft dark:bg-slate-700 rounded-lg py-2 px-1">Tour Code</div>
+            </div>
+            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-center shadow-sm">
+                <div class="text-[14px] text-ink-muted dark:text-slate-400 font-medium min-h-[42px] flex items-center justify-center">קוד התמחור</div>
+                <div class="text-brand my-2 text-lg">↓</div>
+                <div class="font-mono font-bold text-[15px] text-brand-deep dark:text-brand bg-brand-soft dark:bg-slate-700 rounded-lg py-2 px-1 flex flex-col items-center">
+                    <span tabindex="0" class="has-tooltip focus:outline-none focus:ring-2 focus:ring-brand" data-tip="קוד המורכב מחלק בסיסי + קוד ההסכם">Fare Basis</span>
+                    <span class="font-sans font-normal text-[11px] text-ink-light dark:text-slate-500 mt-1">צמוד ל Fare Basis</span>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-center shadow-sm">
+                <div class="text-[14px] text-ink-muted dark:text-slate-400 font-medium min-h-[42px] flex items-center justify-center">שם החברה + קוד תמחור</div>
+                <div class="text-brand my-2 text-lg">↓</div>
+                <div class="font-mono font-bold text-[15px] text-brand-deep dark:text-brand bg-brand-soft dark:bg-slate-700 rounded-lg py-2 px-1">Endorsement</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAYMENT & EXTRAS -->
     <section id="payment" class="scroll-mt-36 pt-12">
         <p class="font-heading font-semibold text-[12px] tracking-[2px] text-brand-deep dark:text-brand uppercase mb-2.5 flex items-center gap-2">
             <span class="w-6 h-0.5 bg-brand rounded-full"></span>תשלום והערות
@@ -677,7 +678,6 @@ RLOC <b class="text-white font-bold print:text-black">1G</b> GZV5J6   <b class="
         const iconMoon = document.getElementById('theme-icon-moon');
         const htmlElement = document.documentElement;
         
-        // Check local storage or system preference
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             htmlElement.classList.add('dark');
         } else {
@@ -709,13 +709,12 @@ RLOC <b class="text-white font-bold print:text-black">1G</b> GZV5J6   <b class="
         const dynCodes = document.querySelectorAll('.dyn-code');
         
         dynInput.addEventListener('input', (e) => {
-            let val = e.target.value.trim().toUpperCase(); // GDS codes are uppercase
+            let val = e.target.value.trim().toUpperCase(); 
             const displayVal = val === '' ? 'xxxxx' : val;
             
             dynCodes.forEach(codeEl => {
                 codeEl.textContent = displayVal;
                 
-                // Visual feedback (flash green/highlight)
                 codeEl.classList.remove('text-[#ffd580]', 'bg-white/10');
                 codeEl.classList.add('text-term-bg', 'bg-term-green');
                 
@@ -759,24 +758,29 @@ RLOC <b class="text-white font-bold print:text-black">1G</b> GZV5J6   <b class="
         const pad = (n) => n < 10 ? "0" + n : n;
         
         const updateTimer = () => {
-            const diff = TARGET_DATE - Date.now();
-            
-            if (diff <= 0) {
-                if(countContainer) countContainer.style.display = "none";
-                if(liveBadge) {
-                    liveBadge.style.display = "flex";
-                    liveBadge.classList.remove("hidden");
+            try {
+                const diff = TARGET_DATE - Date.now();
+                
+                if (diff <= 0) {
+                    if(countContainer) countContainer.style.display = "none";
+                    if(liveBadge) {
+                        liveBadge.style.display = "flex";
+                        liveBadge.classList.remove("hidden");
+                    }
+                    return false; 
                 }
-                return false; 
+                
+                const sec = Math.floor(diff / 1000);
+                if(dEl) dEl.textContent = Math.floor(sec / 86400);
+                if(hEl) hEl.textContent = pad(Math.floor((sec % 86400) / 3600));
+                if(mEl) mEl.textContent = pad(Math.floor((sec % 3600) / 60));
+                if(sEl) sEl.textContent = pad(sec % 60);
+                
+                return true;
+            } catch(e) {
+                console.error("Timer error", e);
+                return false;
             }
-            
-            const sec = Math.floor(diff / 1000);
-            if(dEl) dEl.textContent = Math.floor(sec / 86400);
-            if(hEl) hEl.textContent = pad(Math.floor((sec % 86400) / 3600));
-            if(mEl) mEl.textContent = pad(Math.floor((sec % 3600) / 60));
-            if(sEl) sEl.textContent = pad(sec % 60);
-            
-            return true;
         };
         
         if (updateTimer()) {
